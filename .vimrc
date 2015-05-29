@@ -100,6 +100,7 @@ call vundle#rc()
 let g:fuf_file_exclude = 'node_modules|\v\~$|\.o$|\.exe$|\.bak$|\.swp$|\.class$'
 
 " plugins
+Plugin 'airblade/vim-gitgutter'
 Bundle 'Chiel92/vim-autoformat'
 Bundle 'FuzzyFinder'
 Bundle 'L9'
