@@ -121,10 +121,24 @@ Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-abolish'
+Bundle 'tpope/vim-endwise'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'slim-template/vim-slim'
 Bundle 'qpkorr/vim-bufkill'
 Bundle 'tmhedberg/matchit'
+Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'djoshea/vim-autoread'
+Bundle 'mattn/gist-vim'
+Bundle 'mattn/webapi-vim'
+Bundle 'Raimondi/delimitMate'
+
+" Vim Indent Guides
+" -----------------
+let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
+let g:indent_guides_enable_on_vim_startup = 1
+
+" Easier bindings for rails vim
+nmap <Leader>m :Emodel<Space>
 
 " airline tabbar
 " enable the list of buffers
@@ -254,3 +268,15 @@ au BufNewFile,BufRead Podfile set filetype=ruby
 "     \ if line("'\"") > 0 && line("'\"") <= line("$") |
 "     \ exe "normal g`\"" |
 "     \ endif
+
+" allows creating a new file inside a new directory with :E
+" command -nargs=1 E execute('silent! !mkdir -p "$(dirname "<args>")"') <Bar> e <args>
+"
+
+" allow different color text by ~~ text ~~
+au BufRead,BufNewFile *.txt   syntax match StrikeoutMatch /\~\~.*\~\~/
+hi def  StrikeoutColor   ctermbg=darkblue ctermfg=black    guibg=darkblue guifg=blue
+hi link StrikeoutMatch StrikeoutColor
+
+" Open markdown files with Chrome.
+autocmd BufEnter *.md exe 'noremap ,m :!open -a "Google Chrome.app" %:p<CR>'
