@@ -114,14 +114,16 @@ Bundle 'maxbrunsfeld/vim-yankstack'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
+Bundle 'tpope/vim-abolish'
 Bundle 'tpope/vim-commentary'
+Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-markdown'
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-abolish'
-Bundle 'tpope/vim-endwise'
+Bundle 'jtratner/vim-flavored-markdown'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'slim-template/vim-slim'
 Bundle 'qpkorr/vim-bufkill'
@@ -262,6 +264,7 @@ autocmd FileType javascript setlocal nocindent
 "syntax highlight cocoapods
 au BufNewFile,BufRead *.podspec set filetype=ruby
 au BufNewFile,BufRead Podfile set filetype=ruby
+au BufNewFile,BufRead *.gradle set filetype=groovy
 
 " save last cursor position
 " autocmd BufReadPost *
@@ -280,3 +283,6 @@ hi link StrikeoutMatch StrikeoutColor
 
 " Open markdown files with Chrome.
 autocmd BufEnter *.md exe 'noremap ,m :!open -a "Google Chrome.app" %:p<CR>'
+
+" vim-markdown to highlight code in fenced code blocks
+let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'java']
