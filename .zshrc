@@ -61,6 +61,7 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 export PATH="/Users/eliasbagley/.rvm/gems/ruby-2.1.0/bin:/Users/eliasbagley/.rvm/gems/ruby-2.1.0@global/bin:/Users/eliasbagley/.rvm/rubies/ruby-2.1.0/bin:/Users/eliasbagley/Library/androidsdk/platform-tools:/Users/eliasbagley/Library/androidsdk/tools:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/eliasbagley/.rvm/bin"
+export PATH=$PATH":/Library/TeX/texbin" # add texbin to path
 
 #RVM path
 
