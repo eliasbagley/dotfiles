@@ -18,17 +18,24 @@ set nobackup
 set guifont=Monaco:h12
 set background=dark
 set laststatus=2
+set scrolloff=999 "this keeps the cursor in the middle of the screen while scrolling
 set formatoptions-=or
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
-set cryptmethod=blowfish
+if !has('nvim')
+  set cryptmethod=blowfish
+endif
 " splitting settings
 set splitbelow
 set splitright
 let mapleader = "\<space>"
+let maplocalleader = "\<space>"
 noremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 nnoremap <C-h> <C-w>h
+
+"fixes the annoying ness where the search term stays highlighted
+nnoremap <CR> :noh<CR><CR>
 
 " select the last changed text
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
@@ -104,7 +111,7 @@ Plugin 'airblade/vim-gitgutter'
 Bundle 'Chiel92/vim-autoformat'
 Bundle 'FuzzyFinder'
 Bundle 'L9'
-Bundle 'Lokaltog/vim-easymotion'
+"Bundle 'Lokaltog/vim-easymotion'
 " Bundle 'Lokaltog/vim-powerline'
 Bundle 'bling/vim-airline'
 Bundle 'altercation/vim-colors-solarized'
@@ -128,11 +135,17 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'slim-template/vim-slim'
 Bundle 'qpkorr/vim-bufkill'
 Bundle 'tmhedberg/matchit'
-Bundle 'nathanaelkane/vim-indent-guides'
+"Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'djoshea/vim-autoread'
 Bundle 'mattn/gist-vim'
 Bundle 'mattn/webapi-vim'
-Bundle 'Raimondi/delimitMate'
+"Bundle 'Raimondi/delimitMate'
+Bundle "eliasbagley/vim-solidity"
+Bundle "elixir-lang/vim-elixir"
+Bundle "keith/swift.vim"
+Bundle "https://github.com/jceb/vim-orgmode"
+Bundle "https://github.com/tpope/vim-speeddating"
+Bundle "https://github.com/vim-scripts/utl.vim"
 
 " Vim Indent Guides
 " -----------------
@@ -211,11 +224,15 @@ let androidDir = "~/src/Rocketmade/Android/"
 let g:syntastic_java_javac_classpath=androidDir."*/libs/*.jar:".androidDir."*/*/libs/*.jar:".androidDir."*/bin/classes:".androidDir."*/*/bin/classes:~/Library/androidsdk/platforms/android-19/*.jar"
 
 " EasyMotion configuration
-nmap s <Plug>(easymotion-s)
-map , <Plug>(easymotion-prefix)
-let g:EasyMotion_smartcase = 1
-map / <Plug>(easymotion-sn)
-omap / <Plug>(easymotion-tn)
+"nmap s <Plug>(easymotion-s)
+"map , <Plug>(easymotion-prefix)
+"let g:EasyMotion_smartcase = 1
+"map / <Plug>(easymotion-sn)
+"omap / <Plug>(easymotion-tn)
+"
+
+" elixir easy test command
+nmap ,t :!mix test<CR>
 
 "FuzzyFinder mappings
 nnoremap <Leader>t :<C-u>FufFile **/<CR>
@@ -227,7 +244,7 @@ if has('gui_running')
 endif
 
 let g:fuf_file_exclude = '\v\~$'
-\ . '|\.(o|png|PNG|JPG|class|CLASS|jpg|exe|bak|swp)$'
+\ . '|\.(o|png|PNG|JPG|class|CLASS|jpg|exe|bak|swp|beam|app)$'
 \ . '|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
 \ . '|(^|[/\\])_site[/\\]'
 \ . '|(^|[/\\])assets[/\\]'
