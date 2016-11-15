@@ -1,0 +1,48 @@
+[user]
+	name = Elias Bagley
+	email = elias@rocketmade.com
+[push]
+	default = simple
+[credential]
+	helper = osxkeychain
+[color]
+	ui = true
+[init]
+	templatedir = ~/.git_template
+[alias]
+    ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate # pretty log
+    ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat # long log
+    ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative # pretty log with date
+    tl = git log --no-walk --tags --pretty="%h %d %s" --decorate=full
+    fl = log -u # filelog, shows diff for each commit for file
+    la = "!git config -l | grep alias | cut -c 7-" # list aliases
+    # basic shortcuts
+    cp = cherry-pick
+    st = status
+    cl = clone
+    ci = commit
+    co = checkout
+    br = branch
+    # reset shortcuts
+    r = reset
+    r1 = reset HEAD^
+    r2 = reset HEAD^^
+    rh = reset --hard
+    rh1 = reset HEAD^ --hard
+    rh2 = reset HEAD^^ --hard
+    # removes all files which now match the git ignore
+    apply-gitignore = !git ls-files -ci --exclude-standard -z | xargs -0r git rm --cached
+[core]
+	excludefiles = /Users/eliasbagley/.gitignore
+	excludefile = /Users/eliasbagley/.gitignore
+	excludesfile = /Users/eliasbagley/.gitignore
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path =
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[http]
+	sslVerify = false
+[url "git@github.com:"]
+  insteadOf = https://github.com
