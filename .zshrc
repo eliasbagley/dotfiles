@@ -1,3 +1,7 @@
+# launch tmux
+alias tmux="tmux -2" # to fix vim colors
+if [ "$TMUX" = "" ]; then tmux; fi
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -50,13 +54,16 @@ DEFAULT_USER="eliasbagley"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git zsh-syntax-highlighting ruby rails jump brew bundler encode64 osx per-directory-history pow rand-quote rvm terminalapp vi-mode web-search)
+plugins=(git zsh-syntax-highlighting ruby rails jump brew bundler encode64 osx pow rand-quote rvm terminalapp vi-mode web-search xcode history zsh-completions)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
 export PATH="/Users/eliasbagley/.rvm/gems/ruby-2.1.0/bin:/Users/eliasbagley/.rvm/gems/ruby-2.1.0@global/bin:/Users/eliasbagley/.rvm/rubies/ruby-2.1.0/bin:/Users/eliasbagley/Library/androidsdk/platform-tools:/Users/eliasbagley/Library/androidsdk/tools:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/eliasbagley/.rvm/bin"
+
+#RVM path
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -75,14 +82,20 @@ export PATH="/Users/eliasbagley/.rvm/gems/ruby-2.1.0/bin:/Users/eliasbagley/.rvm
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 #
-# autojump
- [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
  # make cd behave as pushd
  setopt auto_pushd
  alias  po='popd'
  alias please='sudo'
  alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
+ alias editrc="vim ~/.zshrc"
+ alias kotlin="kotlinc-jvm"
+ # use nvim by default
+ alias vim="nvim"
+
+ # save history across sessions
+ #setopt inc_append_history
+ #setopt share_history
 
  # turn on vi mode
 bindkey -v
@@ -130,4 +143,49 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 ZSH_HIGHLIGHT_PATTERNS+=('rm -rf *' 'bold,bg=white')
 
 # print a quote
-quote
+#quote
+
+# http://ku1ik.com/2012/05/04/scratch-dir.html
+# Create a new scratch directory
+function scratch {
+  cur_dir="$HOME/scratch"
+  new_dir="$HOME/tmp/scratch-`date +'%s'`"
+  mkdir -p $new_dir
+  ln -nfs $new_dir $cur_dir
+  cd $cur_dir
+  echo "New scratch dir ready >"
+}
+
+# fasd
+eval "$(fasd --init auto)"
+alias v='f -e vim' # quick opening files with vim
+alias m='f -e mplayer' # quick opening files with mplayer
+alias o='a -e xdg-open' # quick opening files with xdg-o
+alias j='z' #remap j to fasd jump
+
+#for macports
+path=(/opt/local/{bin,sbin} $path)
+
+#local scripts
+path=(~/bin $path)
+
+# source autoenv
+source /usr/local/opt/autoenv/activate.sh
+
+# tmuxinator TODO: not currently working
+#export EDITOR='vim'
+#source ~/.bin/tmuxinator.zsh
+
+# setting java home
+export JAVA8_HOME="$(/usr/libexec/java_home -v 1.8)"
+export JAVA7_HOME="$(/usr/libexec/java_home -v 1.7)"
+
+export GITHUB_TOKEN=edf83771611730c78121fe17ad82a98bbcec5fe2
+
+alias fixgeny='sudo /Library/Application\ Support/VirtualBox/LaunchDaemons/VirtualBoxStartup.sh restart'
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+# xcode is retarted and gives <<error type>> errors on code completion sometimes. This might fix it
+alias clearModuleCache='rm -rf ~/Library/Developer/Xcode/DerivedData/ModuleCache'
+alias ddd='rm -rf ~/Library/Developer/Xcode/DerivedData'
