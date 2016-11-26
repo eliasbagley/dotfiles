@@ -303,3 +303,33 @@ autocmd BufEnter *.md exe 'noremap ,m :!open -a "Google Chrome.app" %:p<CR>'
 
 " vim-markdown to highlight code in fenced code blocks
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'java']
+
+"some basic bindings to make thai keyboard work in command mode
+nmap ่ j
+nmap า k
+vmap ่ j
+vmap า k
+nmap ร i
+imap ่า <Esc>
+nmap น o
+nmap ฤ A
+nmap ฯ O
+nmap ู ^
+nmap ก d
+nmap ๓ $
+nmap ฮ V
+nmap ้ h
+nmap ส l
+nmap กก dd
+nmap ไ w
+nmap  ิ b
+nmap ด f
+nmap ฝ /
+nmap ฦ ?
+nmap ป x
+nmap ฟ a
+nmap เเ gg
+nmap ฌ G
+nmap  ี u
+:ca ไ w
+:ca ๆ q
