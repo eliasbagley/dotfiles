@@ -126,6 +126,7 @@ Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-markdown'
+Bundle 'jamshedvesuna/vim-markdown-preview'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
@@ -146,6 +147,7 @@ Bundle "keith/swift.vim"
 Bundle "https://github.com/jceb/vim-orgmode"
 Bundle "https://github.com/tpope/vim-speeddating"
 Bundle "https://github.com/vim-scripts/utl.vim"
+Bundle "kelwin/vim-smali"
 
 " Vim Indent Guides
 " -----------------
@@ -166,6 +168,9 @@ let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
+
+"vim-markdown-preview
+let vim_markdown_preview_github=1
 
 " unicode symbols
 let g:airline_left_sep = '»'

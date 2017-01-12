@@ -62,6 +62,7 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH="/Users/eliasbagley/.rvm/gems/ruby-2.1.0/bin:/Users/eliasbagley/.rvm/gems/ruby-2.1.0@global/bin:/Users/eliasbagley/.rvm/rubies/ruby-2.1.0/bin:/Users/eliasbagley/Library/androidsdk/platform-tools:/Users/eliasbagley/Library/androidsdk/tools:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/eliasbagley/.rvm/bin"
 export PATH=$PATH":/Library/TeX/texbin" # add texbin to path
+export PATH=$PATH":/Applications/Xcode8_1.app/Contents/Developer/usr/bin" # add xcode bin
 
 #RVM path
 
@@ -190,3 +191,17 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 # xcode is retarted and gives <<error type>> errors on code completion sometimes. This might fix it
 alias clearModuleCache='rm -rf ~/Library/Developer/Xcode/DerivedData/ModuleCache'
 alias ddd='rm -rf ~/Library/Developer/Xcode/DerivedData'
+
+
+# helpers for url encoding and decoding
+alias urldecode='python -c "import sys, urllib as ul; \
+    print ul.unquote_plus(sys.argv[1])"'
+
+alias urlencode='python -c "import sys, urllib as ul; \
+    print ul.quote_plus(sys.argv[1])"'
+
+# ediwin for mit-scheme
+alias edwin='mit-scheme --edit'
+
+# start emacs in terminal by default
+alias emacs='emacs -nw'
