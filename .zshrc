@@ -1,9 +1,13 @@
+
 # launch tmux
 alias tmux="tmux -2" # to fix vim colors
+alias weather="curl https://wttr.in/40.767385,-111.891468"
 if [ "$TMUX" = "" ]; then tmux; fi
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
+
+#export JAVA_HOME=$(/usr/libexec/java_home)
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -59,10 +63,14 @@ plugins=(git zsh-syntax-highlighting ruby rails jump brew bundler encode64 osx p
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
-export PATH="/Users/eliasbagley/.rvm/gems/ruby-2.1.0/bin:/Users/eliasbagley/.rvm/gems/ruby-2.1.0@global/bin:/Users/eliasbagley/.rvm/rubies/ruby-2.1.0/bin:/Users/eliasbagley/Library/androidsdk/platform-tools:/Users/eliasbagley/Library/androidsdk/tools:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/eliasbagley/.rvm/bin"
+# android emulator must come first in path, before tools and platform-tools
+export PATH="/Users/eliasbagley/.rvm/gems/ruby-2.1.0/bin:/Users/eliasbagley/.rvm/gems/ruby-2.1.0@global/bin:/Users/eliasbagley/.rvm/rubies/ruby-2.1.0/bin:/Users/eliasbagley/Library/Android/sdk/emulator:/Users/eliasbagley/Library/Android/sdk/platform-tools:/Users/eliasbagley/Library/Android/sdk/tools:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/Users/eliasbagley/.rvm/bin"
 export PATH=$PATH":/Library/TeX/texbin" # add texbin to path
 export PATH=$PATH":/Applications/Xcode8_1.app/Contents/Developer/usr/bin" # add xcode bin
+
+path+=/Users/eliasbagley/Library/Android/sdk/build-tools/28.0.3
+path+=/Users/eliasbagley/src/kscript/build/libs
+path+=/Users/eliasbagley/.local/bin
 
 #RVM path
 
@@ -83,7 +91,10 @@ export PATH=$PATH":/Applications/Xcode8_1.app/Contents/Developer/usr/bin" # add 
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
-#
+
+
+# configure thefuck
+eval $(thefuck --alias)
 
  # make cd behave as pushd
  setopt auto_pushd
@@ -110,16 +121,6 @@ bindkey "^H" backward-delete-char
 bindkey "^U" kill-line
 bindkey "^P" up-history
 bindkey "^N" down-history
-
-# source the fzf functions
-source ~/.fzf.zsh
-# kill process
-fkill() {
-      ps -ef | sed 1d | fzf -m | awk '{print $2}' | xargs kill -${1:-15}
-}
-fkillnow() {
-      ps -ef | sed 1d | fzf -m | awk '{print $2}' | xargs kill -${1:-9}
-}
 
 # custom shortcut scrips for postgres
 
@@ -159,11 +160,14 @@ function scratch {
 }
 
 # fasd
-eval "$(fasd --init auto)"
-alias v='f -e vim' # quick opening files with vim
-alias m='f -e mplayer' # quick opening files with mplayer
-alias o='a -e xdg-open' # quick opening files with xdg-o
-alias j='z' #remap j to fasd jump
+#eval "$(fasd --init auto)"
+#alias v='f -e vim' # quick opening files with vim
+#alias m='f -e mplayer' # quick opening files with mplayer
+#alias o='a -e xdg-open' # quick opening files with xdg-o
+#alias j='z' #remap j to fasd jump
+
+# Autojump
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 #for macports
 path=(/opt/local/{bin,sbin} $path)
@@ -178,13 +182,11 @@ source /usr/local/opt/autoenv/activate.sh
 #export EDITOR='vim'
 #source ~/.bin/tmuxinator.zsh
 
-# setting java home
-export JAVA8_HOME="$(/usr/libexec/java_home -v 1.8)"
-export JAVA7_HOME="$(/usr/libexec/java_home -v 1.7)"
-
 export GITHUB_TOKEN=edf83771611730c78121fe17ad82a98bbcec5fe2
 
 alias fixgeny='sudo /Library/Application\ Support/VirtualBox/LaunchDaemons/VirtualBoxStartup.sh restart'
+
+alias pb="git push -u origin \`git symbolic-ref --short HEAD\`"
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
@@ -205,3 +207,10 @@ alias edwin='mit-scheme --edit'
 
 # start emacs in terminal by default
 alias emacs='emacs -nw'
+
+# pyenv
+eval "$(pyenv init -)"
+
+[ -s "/Users/eliasbagley/.jabba/jabba.sh" ] && source "/Users/eliasbagley/.jabba/jabba.sh"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -148,6 +148,7 @@ Bundle "https://github.com/jceb/vim-orgmode"
 Bundle "https://github.com/tpope/vim-speeddating"
 Bundle "https://github.com/vim-scripts/utl.vim"
 Bundle "kelwin/vim-smali"
+Bundle "udalov/kotlin-vim"
 
 " Vim Indent Guides
 " -----------------
@@ -338,3 +339,6 @@ nmap ฌ G
 nmap  ี u
 :ca ไ w
 :ca ๆ q
+
+" fix some cron bug
+ autocmd filetype crontab setlocal nobackup nowritebackup
